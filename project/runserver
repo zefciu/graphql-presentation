@@ -1,0 +1,2 @@
+FLASK_APP=backend/movie_base/app.py FLASK_DEBUG=1 flask run --port 5000
+

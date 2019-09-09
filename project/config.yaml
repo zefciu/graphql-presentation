@@ -1,0 +1,4 @@
+---
+db_connection: postgresql+psycopg2:///prezka
+backend_app: http://127.0.0.1:5000/
+frontend_app: http://127.0.0.1:3000/

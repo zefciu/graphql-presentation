@@ -1,0 +1,6 @@
+*.sql
+.idea
+*.egg-info
+*.swp
+project/frontend/src/generated/
+__pycache__
