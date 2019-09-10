@@ -1,5 +1,7 @@
 import React from 'react'
 import { FilmsQuery, Film } from '../../generated/graphql'
+import { Card, Container} from 'react-bootstrap'
+import Collapsible from '../Collapsible';
 
 interface MovieListProps {
     data: FilmsQuery;
@@ -13,9 +15,9 @@ export class MovieList extends React.Component<MovieListProps> {
     render(): JSX.Element {
         return <div>
             <h1>Movies</h1>
-            <ol>
+            <Container>
                 {this.getMovieList()}
-            </ol>
+            </Container>
         </div>
     }
 
@@ -25,10 +27,19 @@ export class MovieList extends React.Component<MovieListProps> {
             return ret;
         }
         for (let filmEdge of this.props.data.films.edges) {
-            console.log(filmEdge);
             if (filmEdge && filmEdge.node) {
                 const film = filmEdge.node
-                ret.push(<li>{film.title}, {film.description}</li>);
+                ret.push(
+                    <Card key={film.id} className="mb-2">
+                        <Card.Title>{film.title}</Card.Title>
+                        <Card.Body>
+                        <Collapsible title="opis">
+                            {film.description}
+                        </Collapsible>
+                        </Card.Body>
+                    </Card>
+                );
+
             }
         }
         return ret;

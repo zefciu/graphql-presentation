@@ -4,18 +4,20 @@ export const MOVIE_LIST = gql`query films ($first: Int!) {
   films (first: $first){
     edges {
     	node {
-        title
-        rating
-        description
-        languageId
-        originalLanguageId
-        actors {
-          edges {
-            node {
-              firstName
-              lastName
+    	    id
+            title
+            rating
+            description
+            languageId
+            originalLanguageId
+            actors {
+              edges {
+                node {
+                  id
+                  firstName
+                  lastName
+                }
             }
-          }
         }
       }
     }
