@@ -1,0 +1,165 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Singapore}
+}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage[normalem]{ulem}
+\usepackage{graphicx}
+
+% For pygmentize
+\usepackage{fancyvrb}
+\usepackage{color}
+
+% \input{styles}
+
+
+\title[GraphQL – why?]
+{A demo about the advantages (and some disadvantages) of using GraphQL}
+
+\author[]{Szymon Pyżalski}
+
+\institute{Sunscrapers}
+
+\date {19 IX 2019}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+  \url{http://github.com/zefciu/hic-sunt-pythones/}
+\end{frame}
+
+
+\section{What will I talk about?}
+
+\begin{frame}{What will I talk about?}
+    \begin{itemize}
+            \pause
+        \item \sout{Graphql – what?}
+            \pause
+        \item \sout{Graphql – how?}
+            \pause
+        \item {Graphql – why?}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \centering
+    \includegraphics[scale=0.3]{hypetrain}
+\end{frame}
+
+\section{Problem 1 – the API and its docs}
+\begin{frame}
+    \begin{itemize}
+            \pause
+        \item No standard for documenting your API
+            \pause
+        \item Need to use external tools to write documentation
+            \pause
+        \item No guarantee, that the documentation reflects the API whatsoever
+    \end{itemize}
+\end{frame}
+
+\section{Problem 2 – the N+1}
+
+\begin{frame}[fragile]\frametitle{Solution 1 - a lot of requests}
+    \begin{verbatim}
+http://myapi.com/movies/1
+http://myapi.com/actors/2
+http://myapi.com/actors/32
+http://myapi.com/actors/43
+http://myapi.com/actors/28
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}{Solution 1 – problems} 
+    \begin{itemize}
+            \pause
+        \item Inefficient on API level
+            \pause
+        \item Impossible to optimise DB access as well
+            \pause
+        \item The complexity grows geometrically with levels of nesting
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Solution 2 - dedicated endpoints}
+        \begin{verbatim}
+http://myapi.com/movies_with_actors/1
+http://myapi.com/movies_without_actors/1
+http://myapi.com/movies_for_gallery_view/1
+http://myapi.com/movies_for_list_view/1
+        \end{verbatim}
+\end{frame}
+
+\begin{frame}{Solution 2 – problems} 
+    \begin{itemize}
+            \pause
+        \item No decoupling between frontend and backend
+            \pause
+        \item A lot of codebase to maintain
+            \pause
+        \item Every task requires backend and frontend developer
+            \pause
+        \item Devs now hate you
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Solution 3 - parametrised views}
+        \begin{verbatim}
+http://myapi.com/movies/1?with_actors=1
+http://myapi.com/movies/1?with_actors=0
+http://myapi.com/movies/1?with_actors=0?with_categories=1
+http://myapi.com/movies/1?details=1
+        \end{verbatim}
+\end{frame}
+
+\begin{frame}{Solution 3 – problems} 
+    \begin{itemize}
+            \pause
+        \item No standard
+            \pause
+        \item You are creating a language without a prior plan
+            \pause
+        \item Now you are basically trying to reimplement GraphQL the wrong
+            way.
+    \end{itemize}
+\end{frame}
+
+\section{Problem 3 – the type safety}
+
+\begin{frame}{Problem 3} 
+    \begin{itemize}
+            \pause
+        \item The need to recreate the types on the frontend violate the DRY
+            principle
+            \pause
+        \item All the type checking must be done manually
+            \pause
+        \item Destructive changes may introduce hard-to-find bugs
+    \end{itemize}
+\end{frame}
+
+
+\section{What I don't like}
+
+\begin{frame} 
+    \begin{itemize}
+            \pause
+        \item The N+1 problem can be silently just shifted to DB layer
+            \pause
+        \item Relay specification is very complex but there is no agreed-upon
+            alternative
+            \pause
+        \item No leverage from HTTP layer features
+    \end{itemize}
+\end{frame}
+
+
+\end{document}
+
