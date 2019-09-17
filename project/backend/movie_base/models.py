@@ -33,8 +33,7 @@ metadata = Base.metadata
 class Actor(Base):
     __tablename__ = 'actor'
 
-    actor_id = Column(Integer, primary_key=True, server_default=text(
-        "nextval('actor_actor_id_seq'::regclass)"))
+    actor_id = Column(Integer, primary_key=True)
     first_name = Column(String(45), nullable=False)
     last_name = Column(String(45), nullable=False, index=True)
     last_update = Column(DateTime, nullable=False,
@@ -44,8 +43,7 @@ class Actor(Base):
 class Category(Base):
     __tablename__ = 'category'
 
-    category_id = Column(Integer, primary_key=True, server_default=text(
-        "nextval('category_category_id_seq'::regclass)"))
+    category_id = Column(Integer, primary_key=True)
     name = Column(String(25), nullable=False)
     last_update = Column(DateTime, nullable=False,
                          server_default=text("now()"))
@@ -54,8 +52,7 @@ class Category(Base):
 class Language(Base):
     __tablename__ = 'language'
 
-    language_id = Column(Integer, primary_key=True, server_default=text(
-        "nextval('language_language_id_seq'::regclass)"))
+    language_id = Column(Integer, primary_key=True)
     name = Column(CHAR(20), nullable=False)
     last_update = Column(DateTime, nullable=False,
                          server_default=text("now()"))
@@ -64,10 +61,9 @@ class Language(Base):
 class Film(Base):
     __tablename__ = 'film'
 
-    film_id = Column(Integer, primary_key=True, server_default=text(
-        "nextval('film_film_id_seq'::regclass)"))
+    film_id = Column(Integer, primary_key=True)
     title = Column(String(255), nullable=False, index=True)
-    description = Column(Text)
+    description = Column(Text, nullable=False)
     release_year = Column(Integer)
     language_id = Column(
         ForeignKey(

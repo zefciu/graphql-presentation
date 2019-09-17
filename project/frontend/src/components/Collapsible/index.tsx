@@ -13,7 +13,7 @@ class Collapsible extends React.Component<CollapsibleProps, {open: boolean}> {
     }
     render() {
         return (
-            <>
+            <div>
             <Button
                 onClick={(event: any) => this.setOpen()}
                 aria-controls="{this.id}.collapsible"
@@ -24,7 +24,7 @@ class Collapsible extends React.Component<CollapsibleProps, {open: boolean}> {
                 {this.props.children}
                 </div>
             </Collapse>
-            </>
+            </div>
         )
     }
 

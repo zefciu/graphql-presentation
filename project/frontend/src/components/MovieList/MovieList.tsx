@@ -1,5 +1,5 @@
 import React from 'react'
-import { FilmsQuery, Film } from '../../generated/graphql'
+import { Actor, FilmsQuery, Maybe } from '../../generated/graphql'
 import { Card, Container} from 'react-bootstrap'
 import Collapsible from '../Collapsible';
 
@@ -36,6 +36,11 @@ export class MovieList extends React.Component<MovieListProps> {
                         <Collapsible title="opis">
                             {film.description}
                         </Collapsible>
+                        <Collapsible title="aktorów">
+                            <ul>
+                            {this.getActors(film.actors)}
+                            </ul>
+                        </Collapsible>
                         </Card.Body>
                     </Card>
                 );
@@ -43,5 +48,28 @@ export class MovieList extends React.Component<MovieListProps> {
             }
         }
         return ret;
+    }
+
+    private getActors(
+        actors: Maybe<{
+            'edges': Maybe<{
+                'node': Maybe<Pick<Actor, | 'firstName' | 'lastName'>>
+               }>[]
+         }>) {
+        let ret : JSX.Element[] = [] ;
+        if (!actors || !actors.edges) {
+            return ret;
+        }
+        for (let actorEdge of actors.edges) {
+            if (!actorEdge || !actorEdge.node) {
+                continue;
+            }
+            let actor = actorEdge.node;
+            ret.push(
+                <li>{actor.firstName} {actor.lastName}</li>
+            )
+        }
+        return ret;
+
     }
 }
