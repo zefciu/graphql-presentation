@@ -1,4 +1,3 @@
-*.sql
 .idea
 *.egg-info
 *.swp

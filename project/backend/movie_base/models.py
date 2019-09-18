@@ -1,10 +1,8 @@
 # coding: utf-8
 from sqlalchemy import (
-    ARRAY,
     CHAR,
     Column,
     create_engine,
-    DateTime,
     Enum,
     ForeignKey,
     Integer,
@@ -16,7 +14,6 @@ from sqlalchemy import (
     text,
 )
 from sqlalchemy.orm import relationship, scoped_session, sessionmaker
-from sqlalchemy.dialects.postgresql import TSVECTOR
 from sqlalchemy.ext.declarative import declarative_base
 
 from movie_base.config import config
@@ -36,8 +33,6 @@ class Actor(Base):
     actor_id = Column(Integer, primary_key=True)
     first_name = Column(String(45), nullable=False)
     last_name = Column(String(45), nullable=False, index=True)
-    last_update = Column(DateTime, nullable=False,
-                         server_default=text("now()"))
 
 
 class Category(Base):
@@ -45,8 +40,6 @@ class Category(Base):
 
     category_id = Column(Integer, primary_key=True)
     name = Column(String(25), nullable=False)
-    last_update = Column(DateTime, nullable=False,
-                         server_default=text("now()"))
 
 
 class Language(Base):
@@ -54,8 +47,6 @@ class Language(Base):
 
     language_id = Column(Integer, primary_key=True)
     name = Column(CHAR(20), nullable=False)
-    last_update = Column(DateTime, nullable=False,
-                         server_default=text("now()"))
 
 
 class Film(Base):
@@ -93,11 +84,7 @@ class Film(Base):
             'R',
             'NC-17',
             name='mpaa_rating'),
-        server_default=text("'G'::mpaa_rating"))
-    last_update = Column(DateTime, nullable=False,
-                         server_default=text("now()"))
-    special_features = Column(ARRAY(Text()))
-    fulltext = Column(TSVECTOR, nullable=False, index=True)
+    )
 
     language = relationship(
         'Language',
@@ -142,8 +129,6 @@ class FilmCategory(Base):
             onupdate='CASCADE'),
         primary_key=True,
         nullable=False)
-    last_update = Column(DateTime, nullable=False,
-                         server_default=text("now()"))
 
     category = relationship('Category')
     film = relationship('Film')
