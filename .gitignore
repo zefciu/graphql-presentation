@@ -4,3 +4,11 @@
 *.swp
 project/frontend/src/generated/
 __pycache__
+*.aux
+*.log
+*.nav
+*.out
+*.pdf
+*.snm
+*.toc
+*.vrb
