@@ -18,7 +18,7 @@ class Collapsible extends React.Component<CollapsibleProps, {open: boolean}> {
                 onClick={(event: any) => this.setOpen()}
                 aria-controls="{this.id}.collapsible"
                 aria-expanded={this.state.open}
-            >Zobacz {this.props.title}</Button>
+            >Show {this.props.title}</Button>
             <Collapse in={this.state.open}>
                 <div className="collapsible">
                 {this.props.children}

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Actor, FilmsQuery, Maybe } from '../../generated/graphql'
+import { FilmsQuery } from '../../generated/graphql'
+// import { Actor, FilmsQuery, Maybe } from '../../generated/graphql'
 import { Card, Container} from 'react-bootstrap'
 import Collapsible from '../Collapsible';
 
@@ -8,9 +9,6 @@ interface MovieListProps {
 }
 
 export class MovieList extends React.Component<MovieListProps> {
-    constructor(props: MovieListProps) {
-        super(props)
-    }
 
     render(): JSX.Element {
         return <div>
@@ -33,14 +31,14 @@ export class MovieList extends React.Component<MovieListProps> {
                     <Card key={film.id} className="mb-2">
                         <Card.Title>{film.title}</Card.Title>
                         <Card.Body>
-                        <Collapsible title="opis">
+                        <Collapsible title="description">
                             {film.description}
                         </Collapsible>
-                        <Collapsible title="aktorów">
+                        {/*<Collapsible title="actors">
                             <ul>
                             {this.getActors(film.actors)}
                             </ul>
-                        </Collapsible>
+                        </Collapsible>*/}
                         </Card.Body>
                     </Card>
                 );
@@ -50,7 +48,7 @@ export class MovieList extends React.Component<MovieListProps> {
         return ret;
     }
 
-    private getActors(
+    /* private getActors(
         actors: Maybe<{
             'edges': Maybe<{
                 'node': Maybe<Pick<Actor, | 'firstName' | 'lastName'>>
@@ -71,5 +69,5 @@ export class MovieList extends React.Component<MovieListProps> {
         }
         return ret;
 
-    }
+    } */
 }

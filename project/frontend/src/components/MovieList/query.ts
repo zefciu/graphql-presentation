@@ -10,15 +10,15 @@ export const MOVIE_LIST = gql`query films ($first: Int!) {
             description
             languageId
             originalLanguageId
-            actors {
-              edges {
-                node {
-                  id
-                  firstName
-                  lastName
-                }
-            }
-        }
+            # actors {
+            #   edges {
+            #     node {
+            #       id
+            #       firstName
+            #       lastName
+            #     }
+            #   }
+            # }
       }
     }
     pageInfo{
