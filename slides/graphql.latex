@@ -50,7 +50,7 @@
 
 \begin{frame}
     \centering
-    \includegraphics[scale=0.3]{hypetrain}
+    \includegraphics[height=\textheight,keepaspectratio=true]{hypetrain}
 \end{frame}
 
 \section{Problem 1 – the API and its docs}
@@ -63,6 +63,11 @@
             \pause
         \item No guarantee, that the documentation reflects the API whatsoever
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio=true]{noidea}
 \end{frame}
 
 \section{Problem 2 – the N+1}
@@ -88,6 +93,11 @@ http://myapi.com/actors/28
     \end{itemize}
 \end{frame}
 
+\begin{frame}
+    \centering
+    \includegraphics[height=\textheight,keepaspectratio=true]{slow}
+\end{frame}
+
 \begin{frame}[fragile]\frametitle{Solution 2 - dedicated endpoints}
         \begin{verbatim}
 http://myapi.com/movies_with_actors/1
@@ -105,9 +115,12 @@ http://myapi.com/movies_for_list_view/1
         \item A lot of codebase to maintain
             \pause
         \item Every task requires backend and frontend developer
-            \pause
-        \item Devs now hate you
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio=true]{angry}
 \end{frame}
 
 \begin{frame}[fragile]\frametitle{Solution 3 - parametrised views}
@@ -131,6 +144,11 @@ http://myapi.com/movies/1?details=1
     \end{itemize}
 \end{frame}
 
+\begin{frame}
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio=true]{reinventing}
+\end{frame}
+
 \section{Problem 3 – the type safety}
 
 \begin{frame}{Problem 3} 
@@ -145,6 +163,10 @@ http://myapi.com/movies/1?details=1
     \end{itemize}
 \end{frame}
 
+\begin{frame}
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio=true]{crash}
+\end{frame}
 
 \section{What I don't like}
 
