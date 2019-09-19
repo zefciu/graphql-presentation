@@ -18,7 +18,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 from movie_base.config import config
 
-engine = create_engine(config['db_connection'], convert_unicode=True)
+engine = create_engine(config['db_connection'], convert_unicode=True, echo=True)
 db_session = scoped_session(sessionmaker(
     autocommit=False, autoflush=False, bind=engine))
 

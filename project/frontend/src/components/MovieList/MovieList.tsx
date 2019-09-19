@@ -8,6 +8,14 @@ interface MovieListProps {
     data: FilmsQuery;
 }
 
+function truncate(txt: string, length: number) {
+    if (txt.length > length) {
+        return txt.slice(0, length) + '...';
+    } else {
+        return txt;
+    }
+}
+
 export class MovieList extends React.Component<MovieListProps> {
 
     render(): JSX.Element {
@@ -27,12 +35,23 @@ export class MovieList extends React.Component<MovieListProps> {
         for (let filmEdge of this.props.data.films.edges) {
             if (filmEdge && filmEdge.node) {
                 const film = filmEdge.node
+                /* let descriptionElement: JSX.Element;
+                if (film.description == null) {
+                    descriptionElement = <div>No description</div>
+                } else {
+                    descriptionElement = <Collapsible title="description">
+                            {truncate(film.description, 20)}
+                        </Collapsible>
+
+                }*/
                 ret.push(
+
                     <Card key={film.id} className="mb-2">
                         <Card.Title>{film.title}</Card.Title>
                         <Card.Body>
+                        {/* {descriptionElement} */}
                         <Collapsible title="description">
-                            {film.description}
+                            {truncate(film.description, 20)}
                         </Collapsible>
                         {/*<Collapsible title="actors">
                             <ul>
