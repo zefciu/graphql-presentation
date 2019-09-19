@@ -29,40 +29,35 @@ export class MovieList extends React.Component<MovieListProps> {
 
     private getMovieList(): JSX.Element[] {
         let ret : JSX.Element[] = [] ;
-        if (!this.props.data.films) {
-            return ret;
-        }
-        for (let filmEdge of this.props.data.films.edges) {
-            if (filmEdge && filmEdge.node) {
-                const film = filmEdge.node
-                /* let descriptionElement: JSX.Element;
-                if (film.description == null) {
-                    descriptionElement = <div>No description</div>
-                } else {
-                    descriptionElement = <Collapsible title="description">
-                            {truncate(film.description, 20)}
-                        </Collapsible>
+        for (let filmEdge of this.props.data.films!.edges) {
+            const film = filmEdge!.node!
+            /* let descriptionElement: JSX.Element;
+            if (film.description == null) {
+                descriptionElement = <div>No description</div>
+            } else {
+                descriptionElement = <Collapsible title="description">
+                        {truncate(film.description, 20)}
+                    </Collapsible>
 
-                }*/
-                ret.push(
+            }*/
+            ret.push(
 
-                    <Card key={film.id} className="mb-2">
-                        <Card.Title>{film.title}</Card.Title>
-                        <Card.Body>
-                        {/* {descriptionElement} */}
-                        <Collapsible title="description">
-                            {truncate(film.description, 20)}
-                        </Collapsible>
-                        {/*<Collapsible title="actors">
-                            <ul>
-                            {this.getActors(film.actors)}
-                            </ul>
-                        </Collapsible>*/}
-                        </Card.Body>
-                    </Card>
-                );
+                <Card key={film.id} className="mb-2">
+                    <Card.Title>{film.title}</Card.Title>
+                    <Card.Body>
+                    {/* {descriptionElement} */}
+                    <Collapsible title="description">
+                        {truncate(film.description, 20)}
+                    </Collapsible>
+                    {/*<Collapsible title="actors">
+                        <ul>
+                        {this.getActors(film.actors)}
+                        </ul>
+                    </Collapsible> */}
+                    </Card.Body>
+                </Card>
+            );
 
-            }
         }
         return ret;
     }
@@ -74,19 +69,13 @@ export class MovieList extends React.Component<MovieListProps> {
                }>[]
          }>) {
         let ret : JSX.Element[] = [] ;
-        if (!actors || !actors.edges) {
-            return ret;
-        }
-        for (let actorEdge of actors.edges) {
-            if (!actorEdge || !actorEdge.node) {
-                continue;
-            }
-            let actor = actorEdge.node;
+        for (let actorEdge of actors!.edges!) {
+            let actor = actorEdge!.node!;
             ret.push(
                 <li>{actor.firstName} {actor.lastName}</li>
             )
         }
         return ret;
 
-    } */
+    }*/
 }
