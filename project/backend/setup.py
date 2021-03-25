@@ -12,7 +12,7 @@ setup(
         'Flask-GraphQL==2.0.0',
         'graphene==2.1.8',
         'graphene-sqlalchemy==2.2.2',
-        'PyYAML==5.1.2',
+        'PyYAML==5.4',
         'psycopg2-binary',
         'SQLAlchemy==1.3.8',
     ]
