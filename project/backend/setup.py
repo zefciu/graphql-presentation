@@ -8,7 +8,7 @@ setup(
     install_requires=[
         'alembic==1.1.0',
         'Flask==1.1.1',
-        'Flask-Cors==3.0.8',
+        'Flask-Cors==3.0.9',
         'Flask-GraphQL==2.0.0',
         'graphene==2.1.8',
         'graphene-sqlalchemy==2.2.2',
